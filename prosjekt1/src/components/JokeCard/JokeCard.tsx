@@ -1,6 +1,6 @@
-import "./QuoteCard.css"
+import "./JokeCard.css"
 
-function QuoteCard({quote, author}:{
+function JokeCard({quote, author}:{
         quote:string,
         author:string,
     }
@@ -16,4 +16,4 @@ function QuoteCard({quote, author}:{
 
 }
 
-export default QuoteCard
+export default JokeCard
