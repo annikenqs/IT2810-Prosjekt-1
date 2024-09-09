@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import JokeCard from "./components/JokeCard/JokeCard.tsx";
-import "./components/QuoteCard/QuoteCard.css";
+import "./components/JokeCard/JokeCard.css";
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
