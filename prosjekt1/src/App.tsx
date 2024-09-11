@@ -1,11 +1,11 @@
 import "./App.css";
-import JokeCard from "./components/JokeCard/JokeCard";
+import SlideShow from "./components/SlideShow/SlideShow";
 
 function App() {
 	return (
 		<>
 			<h1>The Giggle Garden</h1>
-			<JokeCard />
+			<SlideShow />
 		</>
 	);
 }
