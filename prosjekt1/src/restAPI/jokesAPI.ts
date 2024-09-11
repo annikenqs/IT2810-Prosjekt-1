@@ -17,7 +17,17 @@ const fetchJoke = async (type: string): Promise<JokeResponse> => {
 	return data;
 }
 
-// Fetch a random joke
+//Fetch a joke, given an ID
+const fetchJokeById = async (id: number): Promise<JokeResponse> => {
+	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=nsfw,religious,racist,sexist,explicit&type=single&idRange=${id}`);
+	if (!response.ok) {
+		throw new Error("Failed to fetch joke");
+	}
+	const data: JokeResponse = await response.json();
+	return data;
+}
+
+// Get a random joke
 export const useRandomJoke = () => {
 	return useQuery({
 		queryKey:["joke", "Any"],
@@ -25,7 +35,7 @@ export const useRandomJoke = () => {
 	})
 }
 
-// Fetch a programming joke
+// Get a programming joke
 export const useProgrammingJoke = () => {
 
 	return useQuery({
@@ -34,7 +44,7 @@ export const useProgrammingJoke = () => {
 	});
 };
 
-// Fetch a spooky joke
+// Get a spooky joke
 export const useSpookyJoke = () => {
 
 	return useQuery({
@@ -43,11 +53,20 @@ export const useSpookyJoke = () => {
 	});
 };
 
-// Fetch a christmas joke
+// Get a christmas joke
 export const useChristmasJoke = () => {
 	
 	return useQuery({
 		queryKey: ["joke", "Christmas"],
 		queryFn: () => fetchJoke("Christmas"),
+	});
+};
+
+
+// Get a joke by ID
+export const useJokeById = (id: number) => {
+	return useQuery({
+		queryKey: ["joke", id],
+		queryFn: () => fetchJokeById(id),
 	});
 };
