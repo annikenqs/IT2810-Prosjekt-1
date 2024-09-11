@@ -9,9 +9,11 @@ export interface JokeResponse {
 
 // Fetch a joke, given a categorie
 const fetchJoke = async (type: string): Promise<JokeResponse> => {
-	const response = await fetch(`https://v2.jokeapi.dev/joke/${type}`);
+	const response = await fetch(`https://v2.jokeapi.dev/${type}?blacklistFlags=nsfw,religious,racist,sexist,explicit&idRange=1-100`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch joke");
+	} else if (!(type=='Christmas' || type=='Spooky' || type=='Programming')) {
+		throw new Error("Invalid joke category");
 	}
 	const data: JokeResponse = await response.json();
 	return data;
@@ -19,9 +21,11 @@ const fetchJoke = async (type: string): Promise<JokeResponse> => {
 
 //Fetch a joke, given an ID
 const fetchJokeById = async (id: number): Promise<JokeResponse> => {
-	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=nsfw,religious,racist,sexist,explicit&type=single&idRange=${id}`);
+	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=nsfw,religious,racist,sexist,explicit&idRange=${id}`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch joke");
+	} else if (id < 1 || id > 100) {
+		throw new Error("Invalid joke ID");
 	}
 	const data: JokeResponse = await response.json();
 	return data;
