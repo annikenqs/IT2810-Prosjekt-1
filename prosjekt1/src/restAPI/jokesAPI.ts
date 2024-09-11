@@ -1,3 +1,5 @@
+import { useQuery} from '@tanstack/react-query';
+
 export interface JokeResponse {
 	type: string;
 	joke?: string; // For single-type jokes
@@ -5,50 +7,47 @@ export interface JokeResponse {
 	delivery?: string; // For two-part jokes
 }
 
-// Fetch a random joke
-export const fetchRandomJoke = async (): Promise<JokeResponse> => {
-	const response = await fetch("https://v2.jokeapi.dev/joke/Any");
-
+// Fetch a joke, given a categorie
+const fetchJoke = async (type: string): Promise<JokeResponse> => {
+	const response = await fetch(`https://v2.jokeapi.dev/joke/${type}`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch joke");
 	}
-
 	const data: JokeResponse = await response.json();
 	return data;
-};
+}
+
+// Fetch a random joke
+export const useRandomJoke = () => {
+	return useQuery({
+		queryKey:["joke", "Any"],
+		 queryFn: () => fetchJoke("Any"),
+	})
+}
 
 // Fetch a programming joke
-export const fetchProgrammingJoke = async (): Promise<JokeResponse> => {
-	const response = await fetch("https://v2.jokeapi.dev/joke/Programming");
+export const useProgrammingJoke = () => {
 
-	if (!response.ok) {
-		throw new Error("Failed to fetch programming joke");
-	}
-
-	const data: JokeResponse = await response.json();
-	return data;
+	return useQuery({
+		queryKey: ["joke", "Programming"],
+		queryFn: () => fetchJoke("Programming"),
+	});
 };
 
 // Fetch a spooky joke
-export const fetchSpookyJoke = async (): Promise<JokeResponse> => {
-	const response = await fetch("https://v2.jokeapi.dev/joke/Spooky");
+export const useSpookyJoke = () => {
 
-	if (!response.ok) {
-		throw new Error("Failed to fetch spooky joke");
-	}
-
-	const data: JokeResponse = await response.json();
-	return data;
+	return useQuery({
+		queryKey: ["joke", "Spooky"],
+		queryFn: () => fetchJoke("Spooky"),
+	});
 };
 
 // Fetch a christmas joke
-export const fetchChristmasJoke = async (): Promise<JokeResponse> => {
-	const response = await fetch("https://v2.jokeapi.dev/joke/Christmas");
-
-	if (!response.ok) {
-		throw new Error("Failed to christmas spooky joke");
-	}
-
-	const data: JokeResponse = await response.json();
-	return data;
+export const useChristmasJoke = () => {
+	
+	return useQuery({
+		queryKey: ["joke", "Christmas"],
+		queryFn: () => fetchJoke("Christmas"),
+	});
 };
