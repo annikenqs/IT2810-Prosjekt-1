@@ -1,29 +1,28 @@
 import { useEffect, useState } from "react";
 import "./JokeCard.css";
-import { fetchSpookyJoke, JokeResponse } from "../../restAPI/jokesAPI";
+import { useSpookyJoke } from "../../restAPI/jokesAPI";
 
 function JokeCard() {
 	const [joke, setJoke] = useState<string>("Loading...");
-
+	const { data: jokeData, error, isLoading} = useSpookyJoke();
+	
 	useEffect(() => {
-		const getJoke = async () => {
-			try {
-				const jokeData: JokeResponse = await fetchSpookyJoke();
-
-				// Check the type of joke (single or two-part)
-				if (jokeData.type === "single" && jokeData.joke) {
-					setJoke(jokeData.joke);
-				} else if (jokeData.type === "twopart" && jokeData.setup && jokeData.delivery) {
-					setJoke(`${jokeData.setup} - ${jokeData.delivery}`);
-				}
-			} catch (error) {
-				console.error(error);
-				setJoke("Failed to fetch joke.");
+		if (isLoading) {
+			setJoke("Loading...")
+		}
+		else if (error) {
+			setJoke("Failed to fetch joke")
+		}
+		else if (jokeData) {
+			if (jokeData.type === "single" && jokeData.joke) {
+				setJoke(jokeData.joke);
+			} else if (jokeData.type === "twopart" && jokeData.setup && jokeData.delivery) {
+				setJoke(`${jokeData.setup} - ${jokeData.delivery}`);
 			}
-		};
+		}
+	}, [isLoading, error, jokeData]);
 
-		getJoke();
-	}, []);
+
 	return (
 		<>
 			<div className="card" role="figure">

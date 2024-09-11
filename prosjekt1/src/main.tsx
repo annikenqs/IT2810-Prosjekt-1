@@ -2,15 +2,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import JokeCard from "./components/JokeCard/JokeCard.tsx";
-import "./components/QuoteCard/QuoteCard.css";
+import "./components/JokeCard/JokeCard.css";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<App />
-		<JokeCard
-			quote="The only limit to our realization of tomorrow is our doubts of today."
-			author="Franklin D. Roosevelt"
-		/>
+		<QueryClientProvider client={queryClient}>
+			<App />
+		</QueryClientProvider>
 	</StrictMode>,
 );
