@@ -3,6 +3,7 @@ import "./App.css";
 import SlideShow from "./components/SlideShow/SlideShow";
 import FavoritePage from "./components/FavoritePage/FavoritePage";
 
+
 function App() {
 	const [showFavorites, setShowFavorites] = useState(false); // State to track which page to show
 

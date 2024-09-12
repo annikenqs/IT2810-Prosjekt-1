@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../JokeCard/JokeCard";
 import "./SlideShow.css";
+import "../../index.css";
 
 function JokeSlideshow() {
   // En statisk vits for eksempelets skyld
@@ -25,10 +26,10 @@ function JokeSlideshow() {
         <p>- {joke}</p>
       </div>
       <div className="controls">
-        <button onClick={previousJoke}>
+        <button className="button" onClick={previousJoke}>
           Previous
         </button>
-        <button onClick={nextJoke}>
+        <button className="button" onClick={nextJoke}>
           Next
         </button>
       </div>

@@ -10,15 +10,4 @@
     margin: 0 auto;
   }
 
-  .controls button {
-    border: none;
-    padding: 10px 20px;
-    margin-top: 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .controls button:disabled {
-    background-color: #cccccc;
-  }
   
