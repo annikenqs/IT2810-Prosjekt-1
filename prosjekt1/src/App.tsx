@@ -21,8 +21,9 @@ function App() {
 			
 			{/* Conditionally render FavoritePage or JokeCard based on state */}
 			{showFavorites ? <FavoritePage /> : <SlideShow />}
+			{showFavorites ? <FavoritePage /> : <JokeCard jokeId={1} />}
 		</>
 	);
 }
 
-export default App
+export default App;
