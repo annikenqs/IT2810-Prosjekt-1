@@ -19,7 +19,7 @@ function App() {
 			</button>
 			
 			{/* Conditionally render FavoritePage or JokeCard based on state */}
-			{showFavorites ? <FavoritePage /> : <JokeCard />}
+			{showFavorites ? <FavoritePage /> : <SlideShow />}
 		</>
 	);
 }
