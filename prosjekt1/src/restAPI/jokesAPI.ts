@@ -7,9 +7,9 @@ export interface JokeResponse {
 	delivery?: string; // For two-part jokes
 }
 
-// Fetch a joke, given a categorie
+// Fetch a joke, given a category
 const fetchJoke = async (type: string): Promise<JokeResponse> => {
-	const response = await fetch(`https://v2.jokeapi.dev/${type}?blacklistFlags=nsfw,religious,racist,sexist,explicit&idRange=1-100`);
+	const response = await fetch(`https://v2.jokeapi.dev/${type}?blacklistFlags=racist,sexist&idRange=0-318`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch joke");
 	} else if (!(type=='Christmas' || type=='Spooky' || type=='Programming')) {
@@ -21,15 +21,46 @@ const fetchJoke = async (type: string): Promise<JokeResponse> => {
 
 //Fetch a joke, given an ID
 const fetchJokeById = async (id: number): Promise<JokeResponse> => {
-	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=nsfw,religious,racist,sexist,explicit&idRange=${id}`);
+	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=racist,sexist&idRange=${id}`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch joke");
-	} else if (id < 1 || id > 100) {
-		throw new Error("Invalid joke ID");
 	}
 	const data: JokeResponse = await response.json();
 	return data;
 }
+
+//Fetch jokes for a specific category
+const fetchJokesByCategory = async (category: string, batchSize: number): Promise<JokeResponse[]> => {
+  const response = await fetch(
+    `https://v2.jokeapi.dev/joke/${category}?blacklistFlags=racist,sexist&amount=${batchSize}&idRange=0-318`
+  );
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${category} jokes`);
+  }
+  const data = await response.json();
+  if (data.error || (data.jokes && data.jokes.length === 0)) {
+    console.log(`No jokes found for ${category}. Error:`, data.error ? data.error : 'None found');
+    return [];
+  }
+  return data.jokes ?? [];
+};
+
+// Fetch exactly 10 jokes from each category
+const fetchAllJokes = async (): Promise<JokeResponse[]> => {
+  const batchSize = 10;
+  let allJokes: JokeResponse[] = [];
+
+  const christmasJokes = await fetchJokesByCategory("Christmas", batchSize);
+  if (christmasJokes.length > 0) allJokes = [...allJokes, ...christmasJokes];
+
+  const spookyJokes = await fetchJokesByCategory("Spooky", batchSize);
+  if (spookyJokes.length > 0) allJokes = [...allJokes, ...spookyJokes];
+
+  const programmingJokes = await fetchJokesByCategory("Programming", batchSize);
+  allJokes = [...allJokes, ...programmingJokes];
+
+  return allJokes;
+};
 
 // Get a random joke
 export const useRandomJoke = () => {
@@ -73,4 +104,12 @@ export const useJokeById = (id: number) => {
 		queryKey: ["joke", id],
 		queryFn: () => fetchJokeById(id),
 	});
+};
+
+//Get all relevant jokes
+export const useAllJokes = () => {
+  return useQuery({
+    queryKey: ["joke", "All"],
+    queryFn: () => fetchAllJokes(),
+  });
 };
