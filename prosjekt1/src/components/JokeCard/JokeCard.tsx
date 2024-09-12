@@ -23,12 +23,29 @@ function JokeCard() {
 		}
 	}, [isLoading, error, jokeData]);
 
+	useEffect(() => {
+		// Load favorite status from localStorage
+		const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+		const isCurrentJokeFavorite = savedFavorites.includes(joke);
+		setIsFavorite(isCurrentJokeFavorite);
+	}, [joke]);
+
 	const handleFavoriteClick = () => {
-		setIsFavorite(!isFavorite); // Toggle the favorite state
-	  }; // TODO: Implement favorite functionality
+		const savedFavorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+		if (isFavorite) {
+			// Remove the joke from favorites
+			const updatedFavorites = savedFavorites.filter((favJoke: string) => favJoke !== joke);
+			localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+		} else {
+			// Add the joke to favorites
+			const updatedFavorites = [...savedFavorites, joke];
+			localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+		}
+		setIsFavorite(!isFavorite);
+	};
 
 	return (
-		<div className="card" role="figure">
+		<section className="card" role="figure">
 		  <h3>Random Joke</h3>
 		  <p>- {joke}</p>
 
@@ -36,7 +53,7 @@ function JokeCard() {
 		  <button onClick={handleFavoriteClick} className="favorite-button">
 			{isFavorite ? "★" : "☆"}
 		  </button>
-		</div>
+		</section>
 	  );
 }
 
