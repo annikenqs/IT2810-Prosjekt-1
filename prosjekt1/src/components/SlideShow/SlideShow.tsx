@@ -2,29 +2,44 @@ import { useState } from "react";
 import "../JokeCard/JokeCard";
 import "./SlideShow.css";
 import "../../index.css";
+import JokeCard from "../JokeCard/JokeCard";
+import { useAllJokes} from "../../restAPI/jokesAPI"; // Pass på at stien er riktig
+
 
 function JokeSlideshow() {
-  // En statisk vits for eksempelets skyld
-  const [joke, setJoke] = useState<string>(
-    "Why don't skeletons fight each other? They don't have the guts."
-  );
+  const { data: jokes, isLoading, isError } = useAllJokes();
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
 
+  // Funksjon for neste vits
   const nextJoke = () => {
-    // Funksjon for neste vits, foreløpig tom
-    console.log("Next joke clicked");
+    if (jokes && currentIndex < jokes.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0); // Hvis det ikke er flere vitser, gå tilbake til starten
+    }
   };
 
+  // Funksjon for forrige vits
   const previousJoke = () => {
-    // Funksjon for forrige vits, foreløpig tom
-    console.log("Previous joke clicked");
+    if (jokes && currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else if (jokes) {
+      setCurrentIndex(jokes.length - 1); // Hvis vi er på første vits, gå til siste
+    }
   };
+
+  if (isLoading) {
+    return <div>Loading jokes...</div>;
+  }
+
+  if (isError || !jokes || jokes.length === 0) {
+    return <div>Failed to load jokes or no jokes available.</div>;
+  }
+
 
   return (
     <div className="slideshow-container">
-      <div className="card" role="figure">
-        <h3>Random Joke</h3>
-        <p>- {joke}</p>
-      </div>
+        <JokeCard jokeId={currentIndex + 1}/>
       <div className="controls">
         <button className="button" onClick={previousJoke}>
           Previous
