@@ -1,19 +1,17 @@
 import { useEffect, useState } from "react";
 import "./JokeCard.css";
-import { useSpookyJoke } from "../../restAPI/jokesAPI";
+import { useJokeById } from "../../restAPI/jokesAPI";
 
-function JokeCard() {
+function JokeCard({ jokeId }: { jokeId: number }) {
 	const [joke, setJoke] = useState<string>("Loading...");
-	const { data: jokeData, error, isLoading} = useSpookyJoke();
-	
+	const { data: jokeData, error, isLoading } = useJokeById(jokeId);
+
 	useEffect(() => {
 		if (isLoading) {
-			setJoke("Loading...")
-		}
-		else if (error) {
-			setJoke("Failed to fetch joke")
-		}
-		else if (jokeData) {
+			setJoke("Loading...");
+		} else if (error) {
+			setJoke("Failed to fetch joke");
+		} else if (jokeData) {
 			if (jokeData.type === "single" && jokeData.joke) {
 				setJoke(jokeData.joke);
 			} else if (jokeData.type === "twopart" && jokeData.setup && jokeData.delivery) {
@@ -22,11 +20,10 @@ function JokeCard() {
 		}
 	}, [isLoading, error, jokeData]);
 
-
 	return (
 		<>
 			<div className="card" role="figure">
-				<h3>Random Joke</h3>
+				<h3>Joke #{jokeId}</h3>
 				<p>- {joke}</p>
 			</div>
 		</>
