@@ -1,0 +1,17 @@
+.favoriteWindow {
+    position: relative;
+    background-color: #dcfbe3;
+    font-style: oblique;
+    min-height: 100px;
+    width: 450px;
+    border-radius: 20px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    padding: 15px;
+}
+
+@media screen and (max-width : 992px) {
+    .favoriteWindow {
+        width: 300px;
+    }
+}
