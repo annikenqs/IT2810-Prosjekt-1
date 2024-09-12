@@ -1,7 +1,8 @@
 .card {
+    position: relative;
     background-color: #dcfbe3;
     font-style: oblique;
-    height: 150px;
+    min-height: 150px;
     width: 300px;
     border-radius: 20px;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
@@ -13,3 +14,16 @@
     background-color: #e3fae8;
     transform: scale(1.01);
 }
+.favorite-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .favorite-button:focus {
+    outline: none;
+  }
