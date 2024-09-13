@@ -11,7 +11,7 @@ function JokeCard({ jokeId }: { jokeId: number }) {
 		if (isLoading) {
 			setJoke("Loading...");
 		} else if (error) {
-			setJoke("Failed to fetch joke");
+			setJoke(error.message);
 		} else if (jokeData) {
 			if (jokeData.type === "single" && jokeData.joke) {
 				setJoke(jokeData.joke);

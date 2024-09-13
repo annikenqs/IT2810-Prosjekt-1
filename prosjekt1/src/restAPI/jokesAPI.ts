@@ -5,7 +5,10 @@ export interface JokeResponse {
 	joke?: string; // For single-type jokes
 	setup?: string; // For two-part jokes
 	delivery?: string; // For two-part jokes
+	id: number;
 }
+
+export const validIDs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 241, 243, 244, 245, 249, 250, 251, 252, 253, 293, 183, 295, 296, 297, 298, 299, 300, 311, 313, 315];
 
 // Fetch a joke, given a category
 const fetchJoke = async (type: string): Promise<JokeResponse> => {
@@ -19,8 +22,11 @@ const fetchJoke = async (type: string): Promise<JokeResponse> => {
 	return data;
 }
 
-//Fetch a joke, given an ID
+//Fetch a joke, given an ID (the ID has to be valid)
 const fetchJokeById = async (id: number): Promise<JokeResponse> => {
+	if (!validIDs.includes(id)) {
+		throw new Error("Invalid joke ID");
+	}
 	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=racist,sexist&idRange=${id}`);
 	if (!response.ok) {
 		throw new Error("Failed to fetch joke");
@@ -30,9 +36,9 @@ const fetchJokeById = async (id: number): Promise<JokeResponse> => {
 }
 
 //Fetch jokes for a specific category
-const fetchJokesByCategory = async (category: string, batchSize: number): Promise<JokeResponse[]> => {
+const fetchJokesByCategory = async (category: string, batchSize: number, rangeStart: number, rangeEnd: number): Promise<JokeResponse[]> => {
   const response = await fetch(
-    `https://v2.jokeapi.dev/joke/${category}?blacklistFlags=racist,sexist&amount=${batchSize}&idRange=0-318`
+    `https://v2.jokeapi.dev/joke/${category}?blacklistFlags=racist,sexist&amount=${batchSize}&idRange=${rangeStart}-${rangeEnd}`
   );
   if (!response.ok) {
     throw new Error(`Failed to fetch ${category} jokes`);
@@ -49,16 +55,15 @@ const fetchJokesByCategory = async (category: string, batchSize: number): Promis
 const fetchAllJokes = async (): Promise<JokeResponse[]> => {
   const batchSize = 10;
   let allJokes: JokeResponse[] = [];
-
-  const christmasJokes = await fetchJokesByCategory("Christmas", batchSize);
-  if (christmasJokes.length > 0) allJokes = [...allJokes, ...christmasJokes];
-
-  const spookyJokes = await fetchJokesByCategory("Spooky", batchSize);
-  if (spookyJokes.length > 0) allJokes = [...allJokes, ...spookyJokes];
-
-  const programmingJokes = await fetchJokesByCategory("Programming", batchSize);
-  allJokes = [...allJokes, ...programmingJokes];
-
+	//Christmas IDs: 241, 243 - 245, 249, 250 - 253, 293
+  const christmasJokes = await fetchJokesByCategory("Christmas", batchSize, 241, 293);
+  if (christmasJokes.length == 10) allJokes = [...allJokes, ...christmasJokes];
+	//Spooky IDs: 183, 295 - 300, 311, 313, 315
+  const spookyJokes: JokeResponse[] = await fetchJokesByCategory("Spooky", batchSize, 183, 315);
+  if (spookyJokes.length == 10) allJokes = [...allJokes, ...spookyJokes];
+	//Programming IDs: 0-9
+  const programmingJokes = await fetchJokesByCategory("Programming", batchSize, 0, 10);
+  if (programmingJokes.length == 10) allJokes = [...allJokes, ...programmingJokes];
   return allJokes;
 };
 
@@ -103,6 +108,7 @@ export const useJokeById = (id: number) => {
 	return useQuery({
 		queryKey: ["joke", id],
 		queryFn: () => fetchJokeById(id),
+		refetchInterval: 1000 * 60 * 10, // Refetch every 10 min
 	});
 };
 
@@ -111,5 +117,6 @@ export const useAllJokes = () => {
   return useQuery({
     queryKey: ["joke", "All"],
     queryFn: () => fetchAllJokes(),
+		refetchInterval: 1000 * 60 * 10,
   });
 };
