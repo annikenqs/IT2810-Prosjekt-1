@@ -40,6 +40,7 @@ function App() {
 	const handleToggleClick = () => {
 		setShowFavorites((prevShowFavorites) => !prevShowFavorites); // Toggle between true and false
 	};
+
 	const handleFilterInput = (checkedCategory: string) => {
 		if (!selectedCategories.includes(checkedCategory)) {
 			setCategories([...selectedCategories, checkedCategory]);
@@ -52,7 +53,7 @@ function App() {
 		return (
 			<>
 				<div className="dropdown">
-					<button>Filter</button>
+					<button className="button">Filter</button>
 					<div className="dropdown-content">
 					{categories.map((category) => (
 						<label key={category.categoryID}>
@@ -75,7 +76,7 @@ function App() {
 	return (
 		<>
 			<h1>The Giggle Garden</h1>
-			<DropDownFilter />
+			{!showFavorites && <DropDownFilter />}
 			{/* Button text changes based on showFavorites state */}
 			<button className="button" onClick={handleToggleClick}>
 				{showFavorites ? "Back" : "Favorites"}
@@ -86,8 +87,7 @@ function App() {
 				<FavoritePage />
 			) : isLoading ? (
 				<p>Loading jokes...</p>
-			) : (
-				filtratedJokes.map((joke) => (
+			) : (filtratedJokes.map((joke) => (
 					<JokeCard jokeResponse={joke} jokeId={joke.id} key={joke.id} />
 				))
 			)}
