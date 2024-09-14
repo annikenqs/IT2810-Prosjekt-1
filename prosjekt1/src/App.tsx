@@ -17,6 +17,7 @@ function App() {
 		{categoryID: 3, label: "Programming"}
 	];
 	
+	//Updates the jokes shown when the selected categories or the list of jokes are changed
 	useEffect(() => {
 		if (selectedCategories.length > 0) {
 			const filtratedJokes = jokes.filter((j) =>
@@ -33,20 +34,28 @@ function App() {
 			setError("Failed to fetch jokes");
 		} else if (jokeData) {
 			setJokes(jokeData); 
-			setFilteredJokes(jokeData);
 		}
 	}, [jokeData, jokeError]);
+
+	useEffect(() => {
+		const savedCategories =JSON.parse(sessionStorage.getItem("savedCategories") || "[]");
+		setCategories(savedCategories);
+	}, [])
 
 	const handleToggleClick = () => {
 		setShowFavorites((prevShowFavorites) => !prevShowFavorites); // Toggle between true and false
 	};
 
+	//Updates selected categories to filter on
 	const handleFilterInput = (checkedCategory: string) => {
+		let updatedCategories = [];
 		if (!selectedCategories.includes(checkedCategory)) {
-			setCategories([...selectedCategories, checkedCategory]);
+			updatedCategories = [...selectedCategories, checkedCategory];
 		} else {
-			setCategories(selectedCategories.filter(cat => cat != checkedCategory));
+			updatedCategories = selectedCategories.filter(cat => cat != checkedCategory);
 		}
+		setCategories(updatedCategories)
+		sessionStorage.setItem("savedCategories", JSON.stringify(updatedCategories))
 	}
 
 	const DropDownFilter = () => {
