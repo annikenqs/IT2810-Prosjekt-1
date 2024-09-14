@@ -19,3 +19,38 @@ h1 {
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 	margin-bottom: 1rem;
 }
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+	align-self: flex-start;
+	z-index: 7;
+	margin-bottom: 50px;
+}
+  
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: whitesmoke;
+	padding: 12px 16px;
+	z-index: 1;
+	min-width: 200px;
+	height: 100px;
+}
+  
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown label {
+	display: block;
+	margin: 5px;
+}
+
+.dropdown button {
+	border-radius: 5px;
+	width: 100px;
+	background-color: whitesmoke;
+	box-shadow: 5px 5px 5px rgb(72, 112, 125);
+}
+
