@@ -84,7 +84,7 @@ function App() {
 	return (
 		<>
 			<h1>The Giggle Garden</h1>
-		<SlideShow />
+			<SlideShow />
 			{!showFavorites && <DropDownFilter />}
 			{/* Button text changes based on showFavorites state */}
 			<button className="button" onClick={handleToggleClick}>
