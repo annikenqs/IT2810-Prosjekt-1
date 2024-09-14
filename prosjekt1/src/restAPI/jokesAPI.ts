@@ -6,6 +6,7 @@ export interface JokeResponse {
 	setup?: string; // For two-part jokes
 	delivery?: string; // For two-part jokes
 	id: number;
+	category: string;
 }
 
 export const validIDs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 241, 243, 244, 245, 249, 250, 251, 252, 253, 293, 183, 295, 296, 297, 298, 299, 300, 311, 313, 315];
