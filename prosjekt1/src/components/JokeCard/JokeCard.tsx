@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import "./JokeCard.css";
-import { useJokeById } from "../../restAPI/jokesAPI";
+import { JokeResponse, useJokeById } from "../../restAPI/jokesAPI";
 
-function JokeCard({ jokeId }: { jokeId: number }) {
+interface JokeCardProps {
+	jokeResponse: JokeResponse; 
+	jokeId: number;
+  }
+
+function JokeCard({ jokeResponse: j, jokeId }: JokeCardProps) {
 	const [joke, setJoke] = useState<string>("Loading...");
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);
 	const { data: jokeData, error, isLoading} = useJokeById(jokeId);
@@ -13,10 +18,11 @@ function JokeCard({ jokeId }: { jokeId: number }) {
 		} else if (error) {
 			setJoke(error.message);
 		} else if (jokeData) {
-			if (jokeData.type === "single" && jokeData.joke) {
-				setJoke(jokeData.joke);
-			} else if (jokeData.type === "twopart" && jokeData.setup && jokeData.delivery) {
-				setJoke(`${jokeData.setup} - ${jokeData.delivery}`);
+			if (j.type === "single" && j.joke) {
+				//setJoke(jokeData.joke);
+				setJoke(j.joke)
+			} else if (j.type === "twopart" && j.setup && j.delivery) {
+				setJoke(`${j.setup} - ${j.delivery}`);
 			}
 		}
 	}, [isLoading, error, jokeData]);
