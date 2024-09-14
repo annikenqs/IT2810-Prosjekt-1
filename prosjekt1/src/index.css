@@ -48,15 +48,12 @@ h1 {
 	transition: background-color 0.3s ease;
 	margin-bottom: 15px;
 	margin-top: 15px;
+	margin-right: 15px;
 }
 
 .button:hover {
 	background-color: #c9e2dd;
 	color: #333;
-}
-button:focus,
-button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {
