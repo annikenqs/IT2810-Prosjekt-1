@@ -3,7 +3,7 @@ import "../JokeCard/JokeCard";
 import "./SlideShow.css";
 import "../../index.css";
 import JokeCard from "../JokeCard/JokeCard";
-import {validIDs} from "../../restAPI/jokesAPI"; 
+import {validIDs, useJokeById } from "../../restAPI/jokesAPI"; 
 
 
 function JokeSlideshow() {
@@ -27,10 +27,21 @@ function JokeSlideshow() {
     );
   };
 
+  const { data: joke, error, isLoading } = useJokeById(currentJokeId);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading joke</div>;
+  }
 
   return (
     <div className="slideshow-container">
-        <JokeCard jokeId={currentJokeId}/>
+        {joke && (
+        <JokeCard jokeId={currentJokeId} jokeResponse={joke} key={currentJokeId} />
+      )}
       <div className="controls">
         <button className="button" onClick={previousJoke}>
           Previous
