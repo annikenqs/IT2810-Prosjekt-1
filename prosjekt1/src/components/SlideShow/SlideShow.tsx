@@ -3,43 +3,34 @@ import "../JokeCard/JokeCard";
 import "./SlideShow.css";
 import "../../index.css";
 import JokeCard from "../JokeCard/JokeCard";
-import { useAllJokes} from "../../restAPI/jokesAPI"; // Pass på at stien er riktig
+import {validIDs} from "../../restAPI/jokesAPI"; 
 
 
 function JokeSlideshow() {
-  const { data: jokes, isLoading, isError } = useAllJokes();
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+
+  // Hent vitsen basert på gjeldende ID fra validIDs (ved bruk av index i listen)
+  const currentJokeId = validIDs[currentIndex];
+
 
   // Funksjon for neste vits
   const nextJoke = () => {
-    if (jokes && currentIndex < jokes.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-    } else {
-      setCurrentIndex(0); // Hvis det ikke er flere vitser, gå tilbake til starten
-    }
+    setCurrentIndex((prevIndex) => 
+      prevIndex < validIDs.length - 1 ? prevIndex + 1 : 0 
+    );
   };
 
   // Funksjon for forrige vits
   const previousJoke = () => {
-    if (jokes && currentIndex > 0) {
-      setCurrentIndex(currentIndex - 1);
-    } else if (jokes) {
-      setCurrentIndex(jokes.length - 1); // Hvis vi er på første vits, gå til siste
-    }
+    setCurrentIndex((prevIndex) => 
+      prevIndex > 0 ? prevIndex - 1 : validIDs.length - 1 
+    );
   };
-
-  if (isLoading) {
-    return <div>Loading jokes...</div>;
-  }
-
-  if (isError || !jokes || jokes.length === 0) {
-    return <div>Failed to load jokes or no jokes available.</div>;
-  }
 
 
   return (
     <div className="slideshow-container">
-        <JokeCard jokeId={currentIndex + 1}/>
+        <JokeCard jokeId={currentJokeId}/>
       <div className="controls">
         <button className="button" onClick={previousJoke}>
           Previous
