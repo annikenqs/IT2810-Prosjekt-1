@@ -19,7 +19,7 @@ function App() {
 	
 	//Updates the jokes shown when the selected categories or the list of jokes are changed
 	useEffect(() => {
-		if (selectedCategories.length > 0) {
+		if (!jokeError && selectedCategories.length > 0) {
 			const filtratedJokes = jokes.filter((j) =>
 				selectedCategories.includes(j.category)
 		);
@@ -27,7 +27,7 @@ function App() {
 		} else {
 			setFilteredJokes(jokes); 
 		}
-	}, [selectedCategories, jokes]);
+	}, [selectedCategories, jokes, jokeError]);
 
 	useEffect(() => {
 		if (jokeError) {

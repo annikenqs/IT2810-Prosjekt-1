@@ -24,7 +24,7 @@ h1 {
 	position: relative;
 	display: inline-block;
 	align-self: flex-start;
-	z-index: 7;
+	z-index: 1;
 	margin: 10px;
 }
   
@@ -32,10 +32,10 @@ h1 {
 	display: none;
 	position: absolute;
 	background-color: whitesmoke;
-	padding: 12px 16px;
-	z-index: 1;
+	padding: 10px 16px;
 	min-width: 200px;
 	height: 100px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
   
 .dropdown:hover .dropdown-content {
