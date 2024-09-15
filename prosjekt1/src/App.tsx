@@ -98,7 +98,7 @@ function App() {
 				<p>Loading jokes...</p>
 			) : (
 				filtratedJokes.map((joke) => (
-					<JokeCard jokeResponse={joke} jokeId={joke.id} key={joke.id} />
+					<JokeCard jokeResponse={joke} key={joke.id} />
 				))
 			)}
 		</>

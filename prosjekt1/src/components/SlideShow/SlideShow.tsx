@@ -40,7 +40,7 @@ function JokeSlideshow() {
   return (
     <div className="slideshow-container">
         {joke && (
-        <JokeCard jokeId={currentJokeId} jokeResponse={joke} key={currentJokeId} />
+        <JokeCard jokeResponse={joke} key={currentJokeId} />
       )}
       <div className="controls">
         <button className="button" onClick={previousJoke}>
