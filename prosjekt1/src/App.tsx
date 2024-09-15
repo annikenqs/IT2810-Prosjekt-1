@@ -83,7 +83,11 @@ function App() {
 	
 	return (
 		<>
-			<h1>The Giggle Garden</h1>
+			<div className="header-container">
+				<img src="/src/assets/plant.png" className="plant plant-left" alt="Plant Left" />
+				<h1 className="title">The Giggle Garden</h1>
+				<img src="/src/assets/plant.png" className="plant plant-right" alt="Plant Right" />
+			</div>
 			<SlideShow />
 			{!showFavorites && <DropDownFilter />}
 			{/* Button text changes based on showFavorites state */}
