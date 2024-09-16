@@ -51,9 +51,10 @@ function JokeSlideshow() {
 					Next
 				</button>
 			</div>
-			<div>
+      <h3 className="skipToJoke">Skip to joke</h3>
+			<div className="jokeIDButton-container">
 				{validIDs.map((jokeid) => (
-					<button className="button" key={jokeid} onClick={() => handleJoke(jokeid)}>
+					<button className="jokeIDButton" key={jokeid} onClick={() => handleJoke(jokeid)}>
 						{validIDs.indexOf(jokeid)}
 					</button>
 				))}
