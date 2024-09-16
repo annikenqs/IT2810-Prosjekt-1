@@ -4,13 +4,12 @@ import { JokeResponse, useJokeById } from "../../restAPI/jokesAPI";
 
 interface JokeCardProps {
 	jokeResponse: JokeResponse; 
-	jokeId: number;
   }
 
-function JokeCard({ jokeResponse: j, jokeId }: JokeCardProps) {
+function JokeCard({ jokeResponse: j }: JokeCardProps) {
 	const [joke, setJoke] = useState<string>("Loading...");
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);
-	const { data: jokeData, error, isLoading} = useJokeById(jokeId);
+	const { data: jokeData, error, isLoading} = useJokeById(j.id);
 	
 	useEffect(() => {
 		if (isLoading) {
@@ -50,7 +49,7 @@ function JokeCard({ jokeResponse: j, jokeId }: JokeCardProps) {
 
 	return (
 		<section className="card" role="figure">
-		  <h3>Joke #{jokeId}</h3>
+		  <h3>Joke #{j.id}</h3>
 		  <p>- {joke}</p>
 
 		  {/* Star: to favorite a joke */}
