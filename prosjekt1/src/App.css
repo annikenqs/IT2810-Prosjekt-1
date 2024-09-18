@@ -64,6 +64,12 @@
 	margin: 16px; /* Space around each card */
 }
 
+@media (max-width: 420px){
+	.joke-flexbox-item {
+		margin-left: 0;
+	}
+}
+
 /* Media queries for different screen sizes */
 @media (max-width: 1024px) {
 	.joke-grid-item {

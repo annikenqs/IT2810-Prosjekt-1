@@ -10,6 +10,12 @@
     padding: 15px;
 }
 
+@media (max-width: 420px) {
+  .card {
+    width: 95%;
+  }
+}
+
 .favorite-button {
     position: absolute;
     top: 5px;
@@ -18,8 +24,8 @@
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-  }
+}
   
-  .favorite-button:focus {
+.favorite-button:focus {
     outline: none;
-  }
+}
