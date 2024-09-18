@@ -58,6 +58,14 @@ h1 {
 	margin-right: 15px;
 }
 
+h2 {
+	font-size: 2.2em;
+	color: #fff;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
 .button:hover {
 	background-color: #c9e2dd;
 	color: #333;

@@ -18,7 +18,6 @@ function App() {
 		{ categoryID: 3, label: "Programming" },
 	];
 
-	
 	//Updates the jokes shown when the selected categories or the list of jokes are changed
 	useEffect(() => {
 		if (!jokeError && selectedCategories.length > 0) {
@@ -28,7 +27,7 @@ function App() {
 			setFilteredJokes(jokes);
 		}
 	}, [selectedCategories, jokes, jokeError]);
-	
+
 	useEffect(() => {
 		if (jokeError) {
 			setError("Failed to fetch jokes");
@@ -36,16 +35,16 @@ function App() {
 			setJokes(jokeData);
 		}
 	}, [jokeData, jokeError]);
-	
+
 	useEffect(() => {
 		const savedCategories = JSON.parse(sessionStorage.getItem("savedCategories") || "[]");
 		setCategories(savedCategories);
 	}, []);
-	
+
 	const handleToggleClick = () => {
 		setShowFavorites((prevShowFavorites) => !prevShowFavorites); // Toggle between true and false
 	};
-	
+
 	//Updates selected categories to filter on
 	const handleFilterInput = (checkedCategory: string) => {
 		let updatedCategories = [];
@@ -57,7 +56,7 @@ function App() {
 		setCategories(updatedCategories);
 		sessionStorage.setItem("savedCategories", JSON.stringify(updatedCategories));
 	};
-	
+
 	const DropDownFilter = () => {
 		return (
 			<>
@@ -80,7 +79,7 @@ function App() {
 			</>
 		);
 	};
-	
+
 	return (
 		<>
 			<div className="header-container">
@@ -89,11 +88,14 @@ function App() {
 				<img src="/src/assets/plant.png" className="plant plant-right" alt="Plant Right" />
 			</div>
 			<SlideShow />
-			{!showFavorites && <DropDownFilter />}
-			{/* Button text changes based on showFavorites state */}
-			<button className="button" onClick={handleToggleClick}>
-				{showFavorites ? "All jokes" : "Favorites"}
-			</button>
+			<h2>All jokes </h2>
+			<div className="button-container">
+				{!showFavorites && <DropDownFilter />}
+				{/* Button text changes based on showFavorites state */}
+				<button className="button" onClick={handleToggleClick}>
+					{showFavorites ? "All jokes" : "Favorites"}
+				</button>
+			</div>
 			{error && <p>{error}</p>}
 			{/* Conditionally render FavoritePage or JokeCard based on state */}
 			{showFavorites ? (
@@ -101,9 +103,13 @@ function App() {
 			) : isLoading ? (
 				<p>Loading jokes...</p>
 			) : (
-				<div className="joke-grid"> {/* Wrap JokeCard items in a flexbox container */}
+				<div className="joke-flexbox">
+					{" "}
+					{/* Wrap JokeCard items in a flexbox container */}
 					{filtratedJokes.map((joke) => (
-						<div className="joke-grid-item" key={joke.id}> {/* Flexbox item */}
+						<div className="joke-flexbox-item" key={joke.id}>
+							{" "}
+							{/* Flexbox item */}
 							<JokeCard jokeResponse={joke} />
 						</div>
 					))}
