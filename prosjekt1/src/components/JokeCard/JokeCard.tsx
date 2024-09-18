@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import "./JokeCard.css";
 import { inUseIDs, JokeResponse } from "../../restAPI/jokesAPI";
