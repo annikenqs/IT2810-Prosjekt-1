@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./JokeCard.css";
-import { JokeResponse, useJokeById, validIDs } from "../../restAPI/jokesAPI";
+import { inUseIDs, JokeResponse } from "../../restAPI/jokesAPI";
 
 interface JokeCardProps {
 	jokeResponse: JokeResponse;
@@ -9,21 +9,20 @@ interface JokeCardProps {
 function JokeCard({ jokeResponse: j }: JokeCardProps) {
 	const [joke, setJoke] = useState<string>("Loading...");
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);
-	const { data: jokeData, error, isLoading } = useJokeById(j.id);
 
 	useEffect(() => {
-		if (isLoading) {
+		if (j.isLoading) {
 			setJoke("Loading...");
-		} else if (error) {
-			setJoke(error.message);
-		} else if (jokeData) {
+		} else if (j.error) {
+			setJoke(j.error.message);
+		} else if (j) {
 			if (j.type === "single" && j.joke) {
 				setJoke(j.joke);
 			} else if (j.type === "twopart" && j.setup && j.delivery) {
 				setJoke(`${j.setup} - ${j.delivery}`);
 			}
 		}
-	}, [isLoading, error, jokeData]);
+	}, [j]);
 
 	useEffect(() => {
 		// Load favorite status from localStorage
@@ -48,9 +47,8 @@ function JokeCard({ jokeResponse: j }: JokeCardProps) {
 
 	return (
 		<section className="card" role="figure">
-			<h3>Joke #{validIDs.indexOf(j.id)}</h3>
+			<h3>Joke #{inUseIDs.indexOf(j.id)}</h3>
 			<p>- {joke}</p>
-
 			{/* Star: to favorite a joke */}
 			<button onClick={handleFavoriteClick} className="favorite-button">
 				{isFavorite ? "★" : "☆"}
