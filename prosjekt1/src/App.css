@@ -41,7 +41,13 @@
     position: relative;
 }
 
-.joke-grid {
+.button-container {
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+  }
+
+.joke-flexbox {
 	display: flex;
 	flex-wrap: wrap; /* Allows items to wrap to new lines */
 	gap: 16px; /* Spacing between the cards */
@@ -50,7 +56,7 @@
 	box-sizing: border-box;
 }
 
-.joke-grid-item {
+.joke-flexbox-item {
 	flex: 1 1 300px; /* Flexible item that adapts to the container's width */
 	max-width: 350px; /* Maximum width for the cards */
 	box-sizing: border-box; /* Ensures padding and margin are included in width calculation */
