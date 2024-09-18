@@ -3,22 +3,22 @@ import "../JokeCard/JokeCard";
 import "./SlideShow.css";
 import "../../index.css";
 import JokeCard from "../JokeCard/JokeCard";
-import { validIDs, useJokeById } from "../../restAPI/jokesAPI";
+import { slideshowIDs, useJokeById } from "../../restAPI/jokesAPI";
 
 function JokeSlideshow() {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
 	// Hent vitsen basert på gjeldende ID fra validIDs (ved bruk av index i listen)
-	const currentJokeId = validIDs[currentIndex];
+	const currentJokeId = slideshowIDs[currentIndex];
 
 	// Funksjon for neste vits
 	const nextJoke = () => {
-		setCurrentIndex((prevIndex) => (prevIndex < validIDs.length - 1 ? prevIndex + 1 : 0));
+		setCurrentIndex((prevIndex) => (prevIndex < slideshowIDs.length - 1 ? prevIndex + 1 : 0));
 	};
 
 	// Funksjon for forrige vits
 	const previousJoke = () => {
-		setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : validIDs.length - 1));
+		setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : slideshowIDs.length - 1));
 	};
 
 	const { data: joke, error, isLoading } = useJokeById(currentJokeId);
@@ -28,7 +28,7 @@ function JokeSlideshow() {
 	}, [currentIndex, currentJokeId]); // Logs after currentIndex updates
 
 	const handleJoke = (id: number) => {
-		setCurrentIndex(validIDs.indexOf(id));
+		setCurrentIndex(slideshowIDs.indexOf(id));
 		console.log("currentJokeId:", currentJokeId); // Add this line to log the current joke ID
 	};
 
@@ -53,9 +53,9 @@ function JokeSlideshow() {
 			</div>
       <h3 className="skipToJoke">Skip to joke</h3>
 			<div className="jokeIDButton-container">
-				{validIDs.map((jokeid) => (
+				{slideshowIDs.map((jokeid) => (
 					<button className="jokeIDButton" key={jokeid} onClick={() => handleJoke(jokeid)}>
-						{validIDs.indexOf(jokeid)}
+						{slideshowIDs.indexOf(jokeid)}
 					</button>
 				))}
 			</div>

@@ -7,9 +7,12 @@ export interface JokeResponse {
 	delivery?: string; // For two-part jokes
 	id: number;
 	category: string;
+	isLoading: boolean;
+	error: Error;
 }
 
-export const validIDs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 241, 243, 244, 245, 249, 250, 251, 252, 253, 293, 183, 295, 296, 297, 298, 299, 300, 311, 313, 315];
+export const slideshowIDs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 242, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 293, 183, 295, 296, 297, 298, 299, 300, 311, 313, 315];
+export const inUseIDs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 242, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 293, 183, 295, 296, 297, 298, 299, 300, 311, 313, 315, 243, 241];
 
 // Fetch a joke, given a category
 const fetchJoke = async (type: string): Promise<JokeResponse> => {
@@ -25,7 +28,7 @@ const fetchJoke = async (type: string): Promise<JokeResponse> => {
 
 //Fetch a joke, given an ID (the ID has to be valid)
 const fetchJokeById = async (id: number): Promise<JokeResponse> => {
-	if (!validIDs.includes(id)) {
+	if (!slideshowIDs.includes(id)) {
 		throw new Error("Invalid joke ID");
 	}
 	const response = await fetch(`https://v2.jokeapi.dev/joke/Programming,Spooky,Christmas?blacklistFlags=racist,sexist&idRange=${id}`);
@@ -56,7 +59,7 @@ const fetchJokesByCategory = async (category: string, batchSize: number, rangeSt
 const fetchAllJokes = async (): Promise<JokeResponse[]> => {
   const batchSize = 10;
   let allJokes: JokeResponse[] = [];
-	//Christmas IDs: 241, 243 - 245, 249, 250 - 253, 293
+	//Christmas IDs: 241, 243 - 245, 249 - 253, 293
   const christmasJokes = await fetchJokesByCategory("Christmas", batchSize, 241, 293);
   if (christmasJokes.length == 10) allJokes = [...allJokes, ...christmasJokes];
 	//Spooky IDs: 183, 295 - 300, 311, 313, 315
