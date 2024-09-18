@@ -50,7 +50,7 @@ function JokeSlideshow() {
 			<div className="jokeIDButton-container">
 				{slideshowIDs.map((jokeid) => (
 					<button className="jokeIDButton" key={jokeid} onClick={() => handleJoke(jokeid)}>
-						{slideshowIDs.indexOf(jokeid)}
+						{slideshowIDs.indexOf(jokeid) + 1}
 					</button>
 				))}
 			</div>
