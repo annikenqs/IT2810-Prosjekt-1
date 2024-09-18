@@ -4,6 +4,7 @@ import SlideShow from "./components/SlideShow/SlideShow";
 import JokeCard from "./components/JokeCard/JokeCard";
 import FavoritePage from "./components/FavoritePage/FavoritePage";
 import { JokeResponse, useAllJokes } from "./restAPI/jokesAPI";
+import plantImage from './assets/plant.png';
 
 function App() {
 	const [jokes, setJokes] = useState<JokeResponse[]>([]);
@@ -83,9 +84,9 @@ function App() {
 	return (
 		<>
 			<div className="header-container">
-				<img src="/src/assets/plant.png" className="plant plant-left" alt="Plant Left" />
+				<img src={plantImage} className="plant plant-left" alt="Plant Left" />
 				<h1 className="title">The Giggle Garden</h1>
-				<img src="/src/assets/plant.png" className="plant plant-right" alt="Plant Right" />
+				<img src={plantImage} className="plant plant-right" alt="Plant Right" />
 			</div>
 			<SlideShow />
 			<h2>All jokes </h2>
