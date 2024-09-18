@@ -92,7 +92,7 @@ function App() {
 			{!showFavorites && <DropDownFilter />}
 			{/* Button text changes based on showFavorites state */}
 			<button className="button" onClick={handleToggleClick}>
-				{showFavorites ? "Back" : "Favorites"}
+				{showFavorites ? "All jokes" : "Favorites"}
 			</button>
 			{error && <p>{error}</p>}
 			{/* Conditionally render FavoritePage or JokeCard based on state */}
@@ -101,9 +101,13 @@ function App() {
 			) : isLoading ? (
 				<p>Loading jokes...</p>
 			) : (
-				filtratedJokes.map((joke) => (
-					<JokeCard jokeResponse={joke} key={joke.id} />
-				))
+				<div className="joke-grid"> {/* Wrap JokeCard items in a flexbox container */}
+					{filtratedJokes.map((joke) => (
+						<div className="joke-grid-item" key={joke.id}> {/* Flexbox item */}
+							<JokeCard jokeResponse={joke} />
+						</div>
+					))}
+				</div>
 			)}
 		</>
 	);
