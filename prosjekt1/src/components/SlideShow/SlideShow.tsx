@@ -21,7 +21,7 @@ function JokeSlideshow() {
 		setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : slideshowIDs.length - 1));
 	};
 
-	const { data: joke, error, isLoading } = useJokeById(currentJokeId);
+	const { data: joke } = useJokeById(currentJokeId);
 
 	useEffect(() => {
 		console.log("currentJokeId:", currentJokeId);
@@ -31,14 +31,6 @@ function JokeSlideshow() {
 		setCurrentIndex(slideshowIDs.indexOf(id));
 		console.log("currentJokeId:", currentJokeId); // Add this line to log the current joke ID
 	};
-
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
-
-	if (error) {
-		return <div>Error loading joke</div>;
-	}
 
 	return (
 		<div className="slideshow-container">
