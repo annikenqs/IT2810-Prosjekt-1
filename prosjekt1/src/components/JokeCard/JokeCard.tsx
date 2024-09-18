@@ -47,7 +47,7 @@ function JokeCard({ jokeResponse: j }: JokeCardProps) {
 
 	return (
 		<section className="card" role="figure">
-			<h3>Joke #{inUseIDs.indexOf(j.id)}</h3>
+			<h3>Joke #{inUseIDs.indexOf(j.id) + 1}</h3>
 			<p>- {joke}</p>
 			{/* Star: to favorite a joke */}
 			<button onClick={handleFavoriteClick} className="favorite-button">

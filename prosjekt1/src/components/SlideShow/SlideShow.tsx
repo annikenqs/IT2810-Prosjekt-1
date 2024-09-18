@@ -4,6 +4,7 @@ import "./SlideShow.css";
 import "../../index.css";
 import JokeCard from "../JokeCard/JokeCard";
 import { slideshowIDs, useJokeById } from "../../restAPI/jokesAPI";
+import CardPlaceHolder from "../JokeCard/CardPlaceholder";
 
 function JokeSlideshow() {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -21,7 +22,7 @@ function JokeSlideshow() {
 		setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : slideshowIDs.length - 1));
 	};
 
-	const { data: joke, error, isLoading } = useJokeById(currentJokeId);
+	const { data: joke } = useJokeById(currentJokeId);
 
 	useEffect(() => {
 		console.log("currentJokeId:", currentJokeId);
@@ -32,17 +33,11 @@ function JokeSlideshow() {
 		console.log("currentJokeId:", currentJokeId); // Add this line to log the current joke ID
 	};
 
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
-
-	if (error) {
-		return <div>Error loading joke</div>;
-	}
-
 	return (
 		<div className="slideshow-container">
-			{joke && <JokeCard jokeResponse={joke} key={currentJokeId} />}
+			{joke ? <JokeCard jokeResponse={joke} key={currentJokeId} /> :
+				<CardPlaceHolder/>
+			}
 			<div className="controls">
 				<button className="button" onClick={previousJoke}>
 					Previous
@@ -55,7 +50,7 @@ function JokeSlideshow() {
 			<div className="jokeIDButton-container">
 				{slideshowIDs.map((jokeid) => (
 					<button className="jokeIDButton" key={jokeid} onClick={() => handleJoke(jokeid)}>
-						{slideshowIDs.indexOf(jokeid)}
+						{slideshowIDs.indexOf(jokeid) + 1}
 					</button>
 				))}
 			</div>
