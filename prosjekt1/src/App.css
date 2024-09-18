@@ -4,6 +4,7 @@
 	padding: 2rem;
 	text-align: flex-start;
 	min-height: 100vh;
+	overflow: auto;
 }
 
 .dropdown {
