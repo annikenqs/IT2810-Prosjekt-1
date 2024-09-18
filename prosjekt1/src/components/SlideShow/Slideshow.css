@@ -3,11 +3,40 @@
     flex-direction: column;
     align-items: center; 
     justify-content: center; 
-  }
-
-.slideshow-container {
     text-align: center;
     margin: 0 auto;
   }
+
+.jokeIDButton-container {
+  text-align: left;
+  margin-bottom: 30px;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.jokeIDButton {
+  background-color: #8a95ba;
+  color: #fff;
+  border-color: #fff;
+}
+
+.jokeIDButton:hover{
+  background-color: #c9e2dd;
+	color: #333;
+}
+
+@media (max-width: 600px) {
+  .jokeIDButton {
+    flex: 1 1 9%;
+  }
+}
+
+.skipToJoke {
+  color: #fff;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 
   
