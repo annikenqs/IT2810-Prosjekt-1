@@ -4,6 +4,7 @@ import "./SlideShow.css";
 import "../../index.css";
 import JokeCard from "../JokeCard/JokeCard";
 import { slideshowIDs, useJokeById } from "../../restAPI/jokesAPI";
+import CardPlaceHolder from "../JokeCard/CardPlaceholder";
 
 function JokeSlideshow() {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -34,7 +35,9 @@ function JokeSlideshow() {
 
 	return (
 		<div className="slideshow-container">
-			{joke && <JokeCard jokeResponse={joke} key={currentJokeId} />}
+			{joke ? <JokeCard jokeResponse={joke} key={currentJokeId} /> :
+				<CardPlaceHolder/>
+			}
 			<div className="controls">
 				<button className="button" onClick={previousJoke}>
 					Previous
