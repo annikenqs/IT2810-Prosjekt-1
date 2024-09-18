@@ -14,7 +14,7 @@
 	z-index: 1;
 	margin: 10px;
 }
-  
+
 .dropdown-content {
 	display: none;
 	position: absolute;
@@ -24,7 +24,7 @@
 	height: 100px;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
-  
+
 .dropdown:hover .dropdown-content {
 	display: block;
 }
@@ -35,18 +35,18 @@
 }
 
 .header-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-    position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+	position: relative;
 }
 
 .button-container {
 	display: flex;
-	justify-content: center; 
+	justify-content: center;
 	align-items: center;
-  }
+}
 
 .joke-flexbox {
 	display: flex;
@@ -64,7 +64,7 @@
 	margin: 16px; /* Space around each card */
 }
 
-@media (max-width: 420px){
+@media (max-width: 420px) {
 	.joke-flexbox-item {
 		margin-left: 0;
 	}
@@ -84,18 +84,27 @@
 }
 
 .plant {
-    width: 170px; 
-    height: 170px; 
-	display: block; 
+	width: 170px;
+	height: 170px;
+	display: block;
 }
 
 .plant-left {
 	transform: scaleX(-1);
 }
-  
-  @media (max-width: 920px) {
-	.plant {
-	  display: none; 
-	}
-  }
 
+.title {
+	margin-top: 0;
+	text-align: center;
+}
+@media (max-width: 400px) {
+	.plant {
+		display: none;
+	}
+}
+
+@media (max-width: 420px) {
+	.title {
+		font-size: xx-large;
+	}
+}
