@@ -50,18 +50,18 @@
 
 .joke-flexbox {
 	display: flex;
-	flex-wrap: wrap; /* Allows items to wrap to new lines */
-	gap: 16px; /* Spacing between the cards */
-	justify-content: space-around; /* Distributes the cards evenly horizontally */
+	flex-wrap: wrap;
+	gap: 16px;
+	justify-content: space-around;
 	padding: 16px;
 	box-sizing: border-box;
 }
 
 .joke-flexbox-item {
-	flex: 1 1 300px; /* Flexible item that adapts to the container's width */
-	max-width: 350px; /* Maximum width for the cards */
-	box-sizing: border-box; /* Ensures padding and margin are included in width calculation */
-	margin: 16px; /* Space around each card */
+	flex: 1 1 300px;
+	max-width: 350px;
+	box-sizing: border-box;
+	margin: 16px;
 }
 
 @media (max-width: 420px) {
@@ -70,16 +70,15 @@
 	}
 }
 
-/* Media queries for different screen sizes */
 @media (max-width: 1024px) {
 	.joke-grid-item {
-		flex: 1 1 calc(50% - 32px); /* Two columns on medium-sized screens */
+		flex: 1 1 calc(50% - 32px);
 	}
 }
 
 @media (max-width: 768px) {
 	.joke-grid-item {
-		flex: 1 1 calc(100% - 32px); /* One column on small screens */
+		flex: 1 1 calc(100% - 32px);
 	}
 }
 

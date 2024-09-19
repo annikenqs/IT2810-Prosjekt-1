@@ -4,7 +4,9 @@ import { JokeResponse } from "../restAPI/jokesAPI";
 import { beforeEach, describe } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 
+// Define the test suite for the JokeCard component
 describe("JokeCard", () => {
+	// Mock implementation of localStorage for testing purposes
 	const mockLocalStorage = (() => {
 		let store: Record<string, string> = {};
 		return {
@@ -24,6 +26,7 @@ describe("JokeCard", () => {
 	})();
 	Object.defineProperty(window, "localStorage", { value: mockLocalStorage });
 
+	// Mock data for a single joke
 	const mockSingleJokeResponse: JokeResponse = {
 		id: 0,
 		type: "single",
@@ -33,6 +36,7 @@ describe("JokeCard", () => {
 		category: "Programming",
 	};
 
+	// Mock data for a two-part joke (setup and punchline)
 	const mockTwopartJokeResponse: JokeResponse = {
 		id: 6,
 		type: "twopart",
@@ -43,6 +47,7 @@ describe("JokeCard", () => {
 		category: "Programming",
 	};
 
+	// Mock data to simulate a loading state
 	const mockLoadingJokeResponse: JokeResponse = {
 		id: 0,
 		type: "single",
@@ -52,6 +57,7 @@ describe("JokeCard", () => {
 		category: "Programming",
 	};
 
+	// Mock data to simulate an error state
 	const mockErrorJokeResponse: JokeResponse = {
 		id: 0,
 		type: "single",
@@ -61,24 +67,29 @@ describe("JokeCard", () => {
 		category: "Programming",
 	};
 
+	// Clear localStorage before each test to ensure a clean slate
 	beforeEach(() => {
 		localStorage.clear();
 	});
 
+	// Clean up the rendered components after each test to avoid memory leaks
 	afterEach(() => {
 		cleanup();
 	});
 
+	// Test case 1: Render a single joke and match the output with the stored snapshot
 	test("renders JokeCard correctly and matches snapshot for single joke", () => {
 		const { container } = render(<JokeCard jokeResponse={mockSingleJokeResponse} />);
 		expect(container).toMatchSnapshot();
 	});
 
+	// Test case 2: Render a two-part joke and match the output with the stored snapshot
 	test("renders JokeCard correctly and matches snapshot for twopart joke", () => {
 		const { container } = render(<JokeCard jokeResponse={mockTwopartJokeResponse} />);
 		expect(container).toMatchSnapshot();
 	});
 
+	// Test case 3: Display a single joke along with its joke number
 	test("displays single joke and joke number", () => {
 		render(<JokeCard jokeResponse={mockSingleJokeResponse} />);
 		expect(
@@ -89,6 +100,7 @@ describe("JokeCard", () => {
 		expect(screen.getByText(/Joke #1/)).toBeInTheDocument();
 	});
 
+	// Test case 4: Display a two-part joke and its joke number
 	test("displays single joke and joke number", () => {
 		render(<JokeCard jokeResponse={mockTwopartJokeResponse} />);
 		expect(
@@ -98,16 +110,19 @@ describe("JokeCard", () => {
 		expect(screen.getByText(/Joke #7/)).toBeInTheDocument();
 	});
 
+	// Test case 5: Display "Loading" when the joke is in a loading state
 	test("displays loading when loading is true", () => {
 		render(<JokeCard jokeResponse={mockLoadingJokeResponse} />);
 		expect(screen.getByText(/Loading/)).toBeInTheDocument();
 	});
 
+	// Test case 6: Display an error message if there's a failure in loading the joke
 	test("displays error message", () => {
 		render(<JokeCard jokeResponse={mockErrorJokeResponse} />);
 		expect(screen.getByText(/Failed to load joke/)).toBeInTheDocument();
 	});
 
+	// Test case 7: Test the favoriting and unfavoriting functionality
 	test("handles favoriting and unfavoriting correctly", () => {
 		render(<JokeCard jokeResponse={mockSingleJokeResponse} />);
 

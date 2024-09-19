@@ -12,14 +12,14 @@ function App() {
 	const [filtratedJokes, setFilteredJokes] = useState<JokeResponse[]>([]);
 	const [selectedCategories, setCategories] = useState<string[]>([]);
 	const { data: jokeData, error: jokeError, isLoading } = useAllJokes();
-	const [showFavorites, setShowFavorites] = useState(false); // State to track which page to show
+	const [showFavorites, setShowFavorites] = useState(false);
 	const categories = [
 		{ categoryID: 1, label: "Christmas" },
 		{ categoryID: 2, label: "Spooky" },
 		{ categoryID: 3, label: "Programming" },
 	];
 
-	//Updates the jokes shown when the selected categories or the list of jokes are changed
+	// Effect hook to update displayed jokes when selected categories or jokes list changes
 	useEffect(() => {
 		if (!jokeError && selectedCategories.length > 0) {
 			const filtratedJokes = jokes.filter((j) => selectedCategories.includes(j.category));
@@ -29,6 +29,7 @@ function App() {
 		}
 	}, [selectedCategories, jokes, jokeError]);
 
+	// Effect hook to handle jokes and errors from the API response
 	useEffect(() => {
 		if (jokeError) {
 			setError("Failed to fetch jokes");
@@ -37,16 +38,18 @@ function App() {
 		}
 	}, [jokeData, jokeError]);
 
+	// Effect hook to load saved categories from sessionStorage when the component mounts
 	useEffect(() => {
 		const savedCategories = JSON.parse(sessionStorage.getItem("savedCategories") || "[]");
 		setCategories(savedCategories);
 	}, []);
 
+	// Toggle between showing favorite jokes or all jokes
 	const handleToggleClick = () => {
 		setShowFavorites((prevShowFavorites) => !prevShowFavorites); // Toggle between true and false
 	};
 
-	//Updates selected categories to filter on
+	// Update the list of selected categories for filtering jokes
 	const handleFilterInput = (checkedCategory: string) => {
 		let updatedCategories = [];
 		if (!selectedCategories.includes(checkedCategory)) {
@@ -58,6 +61,7 @@ function App() {
 		sessionStorage.setItem("savedCategories", JSON.stringify(updatedCategories));
 	};
 
+	//Drop-down box that displays the categories you can filter the jokes on
 	const DropDownFilter = () => {
 		return (
 			<>
