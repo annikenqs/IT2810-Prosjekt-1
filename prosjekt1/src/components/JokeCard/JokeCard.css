@@ -1,22 +1,24 @@
 .card {
-    position: relative;
-    background-color: #dcfbe3;
-    font-style: oblique;
-    min-height: 200px;
-    width: 350px;
-    border-radius: 20px;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    padding: 15px;
-    text-align: center;
+	position: relative;
+	background-color: #dcfbe3;
+	font-style: oblique;
+	min-height: 200px;
+	width: 350px;
+	border-radius: 20px;
+	box-shadow:
+		0 10px 15px -3px rgb(0 0 0 / 0.2),
+		0 4px 6px -4px rgb(0 0 0 / 0.2);
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	padding: 15px;
+	text-align: center;
 }
 
 @media (max-width: 430px) {
-  .card {
-    width: 95%;
-    padding: 11px;
-    min-height: 180px;
-  }
+	.card {
+		width: 95%;
+		padding: 11px;
+		min-height: 180px;
+	}
   .text{
     font-size: small;
   }
@@ -33,15 +35,15 @@
 }
 
 .favorite-button {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: none;
+	border: none;
+	font-size: 1.5rem;
+	cursor: pointer;
 }
-  
+
 .favorite-button:focus {
-    outline: none;
+	outline: none;
 }

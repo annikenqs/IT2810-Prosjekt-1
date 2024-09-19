@@ -25,11 +25,11 @@ describe("SlideShow", () => {
 	};
 
 	beforeEach(() => {
-        // Specify type for the mock return value
-        (useJokeById as jest.Mock).mockReturnValue({
-          data: mockJokeResponse,
-        });
-      });
+		// Specify type for the mock return value
+		(useJokeById as jest.Mock).mockReturnValue({
+			data: mockJokeResponse,
+		});
+	});
 
 	afterEach(() => {
 		cleanup();

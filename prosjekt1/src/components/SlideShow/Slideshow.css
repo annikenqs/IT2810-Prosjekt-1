@@ -1,50 +1,48 @@
 .slideshow-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center; 
-    text-align: center;
-    margin: 0 auto;
-  }
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	margin: 0 auto;
+}
 
-  .jokeIDButton-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(45px, 1fr)); 
-    grid-gap: 10px; 
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
-    max-width: 80vw;
-  }
-  
+.jokeIDButton-container {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+	grid-gap: 10px;
+	margin-bottom: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px;
+	max-width: 80vw;
+}
 
-  .jokeIDButton {
-    background-color: #8a95ba;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    width: 45px; 
-    height: 45px; 
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
+.jokeIDButton {
+	background-color: #8a95ba;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
 
-.jokeIDButton:hover{
-  background-color: #c9e2dd;
+.jokeIDButton:hover {
+	background-color: #c9e2dd;
 	color: #333;
 }
 
 @media (max-width: 600px) {
-  .jokeIDButton {
-    flex: 1 1 9%;
-  }
+	.jokeIDButton {
+		flex: 1 1 9%;
+	}
 }
 
 .skipToJoke {
-  color: #fff;
+	color: #fff;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -103,6 +101,3 @@
     padding: 5px;
   }
 }
-
-
-  
