@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "../JokeCard/JokeCard";
 import "./SlideShow.css";
 import "../../index.css";
@@ -30,18 +30,16 @@ function JokeSlideshow() {
 
 	return (
 		<div className="slideshow-container">
-			{joke ? <JokeCard jokeResponse={joke} key={currentJokeId} /> :
-				<CardPlaceHolder/>
-			}
-			<div className="controls">
-				<button className="button" onClick={previousJoke}>
-					Previous
+			<div className="card-wrapper">
+				<button className="arrow left-arrow" onClick={previousJoke}>
+					&#8249; {/* arrow */}
 				</button>
-				<button className="button" onClick={nextJoke}>
-					Next
+				{joke ? <JokeCard jokeResponse={joke} key={currentJokeId} isSlideshowCard={true}/> : <CardPlaceHolder />}
+				<button className="arrow right-arrow" onClick={nextJoke}>
+					&#8250;
 				</button>
 			</div>
-      <h3 className="skipToJoke">Skip to joke</h3>
+			<h3 className="skipToJoke">Skip to joke</h3>
 			<div className="jokeIDButton-container">
 				{slideshowIDs.map((jokeid) => (
 					<button className="jokeIDButton" key={jokeid} onClick={() => handleJoke(jokeid)}>

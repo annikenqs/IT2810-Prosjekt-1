@@ -48,5 +48,61 @@
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.card-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 4rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.arrow:hover {
+  color: #c9e2dd;
+}
+
+.left-arrow {
+  left: 10px;
+}
+
+.right-arrow {
+  right: 10px;
+}
+
+@media (max-width: 600px) {
+  .arrow {
+    font-size: 2.5rem;
+  }
+
+  .left-arrow {
+    left: 0;
+  }
+
+  .right-arrow {
+    right: 0;
+  }
+
+  .card-wrapper {
+    padding: 0 30px;
+  }
+
+  .slideshow-container {
+    padding: 5px;
+  }
+}
+
 
   
