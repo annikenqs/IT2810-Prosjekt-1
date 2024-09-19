@@ -1,0 +1,66 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SlideShow > renders SlideShow correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="slideshow-container"
+  >
+    <section
+      class="card"
+      role="figure"
+    >
+      <h3>
+        Joke #
+        1
+      </h3>
+      <p>
+        - 
+        I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+      </p>
+      <button
+        class="favorite-button"
+      >
+        ☆
+      </button>
+    </section>
+    <div
+      class="controls"
+    >
+      <button
+        class="button"
+      >
+        Previous
+      </button>
+      <button
+        class="button"
+      >
+        Next
+      </button>
+    </div>
+    <h3
+      class="skipToJoke"
+    >
+      Skip to joke
+    </h3>
+    <div
+      class="jokeIDButton-container"
+    >
+      <button
+        class="jokeIDButton"
+      >
+        1
+      </button>
+      <button
+        class="jokeIDButton"
+      >
+        2
+      </button>
+      <button
+        class="jokeIDButton"
+      >
+        3
+      </button>
+    </div>
+  </div>
+</div>
+`;

@@ -8,7 +8,7 @@ export interface JokeResponse {
 	id: number;
 	category: string;
 	isLoading: boolean;
-	error: Error;
+	error: Error | null;
 }
 
 export const slideshowIDs: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 242, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 293, 183, 295, 296, 297, 298, 299, 300, 311, 313, 315];
