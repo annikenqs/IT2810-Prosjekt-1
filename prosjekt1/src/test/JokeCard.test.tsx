@@ -79,6 +79,12 @@ describe("JokeCard", () => {
 		expect(container).toMatchSnapshot();
 	});
 
+	test("applies slideshow-card class when isSlideshowCard is true", () => {
+		render(<JokeCard jokeResponse={mockSingleJokeResponse} isSlideshowCard={true} />);
+		const card = screen.getByRole("figure");
+		expect(card).toHaveClass("slideshow-card");
+	});
+
 	test("displays single joke and joke number", () => {
 		render(<JokeCard jokeResponse={mockSingleJokeResponse} />);
 		expect(
