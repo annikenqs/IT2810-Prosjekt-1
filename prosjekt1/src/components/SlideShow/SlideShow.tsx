@@ -23,14 +23,8 @@ function JokeSlideshow() {
 	};
 
 	const { data: joke } = useJokeById(currentJokeId);
-
-	useEffect(() => {
-		console.log("currentJokeId:", currentJokeId);
-	}, [currentIndex, currentJokeId]); // Logs after currentIndex updates
-
 	const handleJoke = (id: number) => {
 		setCurrentIndex(slideshowIDs.indexOf(id));
-		console.log("currentJokeId:", currentJokeId); // Add this line to log the current joke ID
 	};
 
 	return (
