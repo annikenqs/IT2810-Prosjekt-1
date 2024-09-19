@@ -41,6 +41,12 @@ describe("SlideShow", () => {
 	});
 
 	it("displays current joke and allows navigating to next and previous jokes", async () => {
+		let currentIndex = 0;
+		
+		// Mock the behavior of useJokeById to update based on currentIndex
+		(useJokeById as jest.Mock).mockImplementation(() => ({
+			data: { ...mockJokeResponse, id: slideshowIDs[currentIndex] },
+		}));
 		render(<SlideShow />);
 
 		// Expect the first joke to be displayed
@@ -51,11 +57,13 @@ describe("SlideShow", () => {
 		).toBeInTheDocument();
 
 		// Click Next and expect the next joke to load
-		fireEvent.click(screen.getByText("Next"));
+		currentIndex = 1;
+		fireEvent.click(screen.getByRole("button", { name: /›/ }));
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[1]);
 
 		// Click Previous and expect the first joke to load again
-		fireEvent.click(screen.getByText("Previous"));
+		currentIndex = 0;
+		fireEvent.click(screen.getByRole("button", { name: /‹/ }));
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[0]);
 	});
 
@@ -102,7 +110,7 @@ describe("SlideShow", () => {
 		});
 
 		// Simulate clicking the "Next" button on the last joke
-		fireEvent.click(screen.getByText("Next"));
+		fireEvent.click(screen.getByRole("button", { name: /›/ }));
 
 		// Expect `useJokeById` to be called with the first joke ID (rollover behavior)
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[0]);
@@ -117,7 +125,7 @@ describe("SlideShow", () => {
 		});
 
 		// Simulate clicking the "Previous" button on the first joke
-		fireEvent.click(screen.getByText("Previous"));
+		fireEvent.click(screen.getByRole("button", { name: /‹/ }));
 
 		// Expect `useJokeById` to be called with the last joke ID (rollover behavior)
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[slideshowIDs.length - 1]);
@@ -127,21 +135,21 @@ describe("SlideShow", () => {
 		render(<SlideShow />);
 
 		// Simulate clicking the "Next" button and check navigation
-		fireEvent.click(screen.getByText("Next"));
+		fireEvent.click(screen.getByRole("button", { name: /›/ }));
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[1]);
 
 		// Simulate clicking "Next" at the end and check rollover to first joke
-		fireEvent.click(screen.getByText("Next"));
-		fireEvent.click(screen.getByText("Next")); // This would be the third click
+		fireEvent.click(screen.getByRole("button", { name: /›/ }));
+		fireEvent.click(screen.getByRole("button", { name: /›/ })); // This would be the third click
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[0]);
 
 		// Simulate clicking "Previous" and check navigation
-		fireEvent.click(screen.getByText("Previous"));
+		fireEvent.click(screen.getByRole("button", { name: /‹/ }));
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[2]);
 
 		// Simulate clicking "Previous" at the start and check rollover to last joke
-		fireEvent.click(screen.getByText("Previous"));
-		fireEvent.click(screen.getByText("Previous"));
+		fireEvent.click(screen.getByRole("button", { name: /‹/ }));
+		fireEvent.click(screen.getByRole("button", { name: /‹/ }));
 		expect(useJokeById).toHaveBeenCalledWith(slideshowIDs[slideshowIDs.length - 1]);
 	});
 });

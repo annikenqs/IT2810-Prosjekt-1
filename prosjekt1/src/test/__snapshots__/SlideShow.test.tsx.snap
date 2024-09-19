@@ -5,36 +5,40 @@ exports[`SlideShow > renders SlideShow correctly and matches snapshot 1`] = `
   <div
     class="slideshow-container"
   >
-    <section
-      class="card"
-      role="figure"
-    >
-      <h3>
-        Joke #
-        1
-      </h3>
-      <p>
-        - 
-        I've got a really good UDP joke to tell you but I don’t know if you'll get it.
-      </p>
-      <button
-        class="favorite-button"
-      >
-        ☆
-      </button>
-    </section>
     <div
-      class="controls"
+      class="card-wrapper"
     >
       <button
-        class="button"
+        class="arrow left-arrow"
       >
-        Previous
+        ‹ 
       </button>
-      <button
-        class="button"
+      <section
+        class="card slideshow-card"
+        role="figure"
       >
-        Next
+        <section
+          class="text"
+        >
+          <h3>
+            Joke #
+            1
+          </h3>
+          <p>
+            - 
+            I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+          </p>
+        </section>
+        <button
+          class="favorite-button"
+        >
+          ☆
+        </button>
+      </section>
+      <button
+        class="arrow right-arrow"
+      >
+        ›
       </button>
     </div>
     <h3

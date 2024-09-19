@@ -34,7 +34,11 @@ function JokeSlideshow() {
 				<button className="arrow left-arrow" onClick={previousJoke}>
 					&#8249; {/* arrow */}
 				</button>
-				{joke ? <JokeCard jokeResponse={joke} key={currentJokeId} isSlideshowCard={true}/> : <CardPlaceHolder />}
+				{joke ? (
+					<JokeCard jokeResponse={joke} key={currentJokeId} isSlideshowCard={true} />
+				) : (
+					<CardPlaceHolder />
+				)}
 				<button className="arrow right-arrow" onClick={nextJoke}>
 					&#8250;
 				</button>

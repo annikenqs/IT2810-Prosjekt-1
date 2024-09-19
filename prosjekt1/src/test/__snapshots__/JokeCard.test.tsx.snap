@@ -3,17 +3,21 @@
 exports[`JokeCard > renders JokeCard correctly and matches snapshot for single joke 1`] = `
 <div>
   <section
-    class="card"
+    class="card "
     role="figure"
   >
-    <h3>
-      Joke #
-      1
-    </h3>
-    <p>
-      - 
-      I've got a really good UDP joke to tell you but I don’t know if you'll get it.
-    </p>
+    <section
+      class="text"
+    >
+      <h3>
+        Joke #
+        1
+      </h3>
+      <p>
+        - 
+        I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+      </p>
+    </section>
     <button
       class="favorite-button"
     >
@@ -26,20 +30,24 @@ exports[`JokeCard > renders JokeCard correctly and matches snapshot for single j
 exports[`JokeCard > renders JokeCard correctly and matches snapshot for twopart joke 1`] = `
 <div>
   <section
-    class="card"
+    class="card "
     role="figure"
   >
-    <h3>
-      Joke #
-      7
-    </h3>
-    <p>
-      Why did the web developer walk out of a resturant in disgust?
-    </p>
-    <p>
-      - 
-      The seating was laid out in tables.
-    </p>
+    <section
+      class="text"
+    >
+      <h3>
+        Joke #
+        7
+      </h3>
+      <p>
+        Why did the web developer walk out of a resturant in disgust?
+      </p>
+      <p>
+        - 
+        The seating was laid out in tables.
+      </p>
+    </section>
     <button
       class="favorite-button"
     >
