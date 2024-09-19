@@ -11,10 +11,13 @@ export interface JokeResponse {
 	error: Error | null;
 }
 
+// this is a list of jokes in slideshow
 export const slideshowIDs: number[] = [
 	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 242, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 293, 183,
 	295, 296, 297, 298, 299, 300, 311, 313, 315,
 ];
+
+// this is a list of jokes in "all jokes"
 export const inUseIDs: number[] = [
 	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 242, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 293, 183,
 	295, 296, 297, 298, 299, 300, 311, 313, 315, 243, 241,
