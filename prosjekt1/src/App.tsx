@@ -4,7 +4,7 @@ import SlideShow from "./components/SlideShow/SlideShow";
 import JokeCard from "./components/JokeCard/JokeCard";
 import FavoritePage from "./components/FavoritePage/FavoritePage";
 import { JokeResponse, useAllJokes } from "./restAPI/jokesAPI";
-import plantImage from './assets/plant.png';
+import plantImage from "./assets/plant.png";
 
 function App() {
 	const [jokes, setJokes] = useState<JokeResponse[]>([]);
