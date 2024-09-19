@@ -5,9 +5,10 @@ import { inUseIDs, JokeResponse } from "../../restAPI/jokesAPI";
 
 interface JokeCardProps {
 	jokeResponse: JokeResponse;
+	isSlideshowCard?: boolean;
 }
 
-function JokeCard({ jokeResponse: j }: JokeCardProps) {
+function JokeCard({ jokeResponse: j, isSlideshowCard }: JokeCardProps) {
 	const [joke, setJoke] = useState<string>("Loading...");
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);
 	const [isTwopart, setTwopart] = useState<boolean>(false);
@@ -49,16 +50,18 @@ function JokeCard({ jokeResponse: j }: JokeCardProps) {
 	};
 
 	return (
-		<section className="card" role="figure">
-			<h3>Joke #{inUseIDs.indexOf(j.id) + 1}</h3>
-			{isTwopart ? (
-				<>
-					<p>{j.setup}</p>
-					<p>- {j.delivery}</p>
-				</>
-			) : (
-				<p>- {joke}</p>
-			)}
+		<section className={`card ${isSlideshowCard ? "slideshow-card" : ""}`} role="figure">
+			<section className="text">
+				<h3>Joke #{inUseIDs.indexOf(j.id) + 1}</h3>
+				{isTwopart ? (
+					<>
+						<p>{j.setup}</p>
+						<p>- {j.delivery}</p>
+					</>
+				) : (
+					<p>- {joke}</p>
+				)}
+			</section>
 			{/* Star: to favorite a joke */}
 			<button onClick={handleFavoriteClick} className="favorite-button">
 				{isFavorite ? "★" : "☆"}

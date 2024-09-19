@@ -19,6 +19,19 @@
 		padding: 11px;
 		min-height: 180px;
 	}
+  .text{
+    font-size: small;
+  }
+  .slideshow-card{
+    width: 70%;
+    padding: 15px 40px;
+  }
+}
+
+@media (max-width: 350px) {
+  .text{
+    font-size: 0.7rem;
+  }
 }
 
 .favorite-button {
