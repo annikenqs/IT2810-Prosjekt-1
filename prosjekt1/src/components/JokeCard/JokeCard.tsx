@@ -10,6 +10,7 @@ interface JokeCardProps {
 function JokeCard({ jokeResponse: j }: JokeCardProps) {
 	const [joke, setJoke] = useState<string>("Loading...");
 	const [isFavorite, setIsFavorite] = useState<boolean>(false);
+	const [isTwopart, setTwopart] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (j.isLoading) {
@@ -21,6 +22,7 @@ function JokeCard({ jokeResponse: j }: JokeCardProps) {
 				setJoke(j.joke);
 			} else if (j.type === "twopart" && j.setup && j.delivery) {
 				setJoke(`${j.setup} - ${j.delivery}`);
+				setTwopart(true);
 			}
 		}
 	}, [j]);
@@ -49,7 +51,13 @@ function JokeCard({ jokeResponse: j }: JokeCardProps) {
 	return (
 		<section className="card" role="figure">
 			<h3>Joke #{inUseIDs.indexOf(j.id) + 1}</h3>
-			<p>- {joke}</p>
+			{isTwopart ?
+				<>
+					<p>{j.setup}</p>
+					<p>- {j.delivery}</p>
+				</> :
+				<p>- {joke}</p>
+			}
 			{/* Star: to favorite a joke */}
 			<button onClick={handleFavoriteClick} className="favorite-button">
 				{isFavorite ? "★" : "☆"}
