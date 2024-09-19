@@ -4,6 +4,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import SlideShow from "../components/SlideShow/SlideShow";
 import { useJokeById, slideshowIDs } from "../restAPI/jokesAPI";
 
+// Mocking the jokesAPI module to control the behavior of `useJokeById` and `slideshowIDs`
 vi.mock("../restAPI/jokesAPI", async (importOriginal) => {
 	const actual = (await importOriginal()) as Record<string, unknown>;
 	return {
@@ -24,13 +25,14 @@ describe("SlideShow", () => {
 		category: "Programming",
 	};
 
+	// Before each test, mock `useJokeById` to return the mock joke data
 	beforeEach(() => {
-		// Specify type for the mock return value
 		(useJokeById as jest.Mock).mockReturnValue({
 			data: mockJokeResponse,
 		});
 	});
 
+	// Cleanup after each test
 	afterEach(() => {
 		cleanup();
 	});

@@ -10,20 +10,22 @@ import CardPlaceHolder from "../JokeCard/CardPlaceholder";
 function JokeSlideshow() {
 	const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-	// Hent vitsen basert på gjeldende ID fra validIDs (ved bruk av index i listen)
+	// Get the joke based on the current ID from validIDs (using the index in the list)
 	const currentJokeId = slideshowIDs[currentIndex];
 
-	// Funksjon for neste vits
+	// Function for moving to the next joke
 	const nextJoke = () => {
 		setCurrentIndex((prevIndex) => (prevIndex < slideshowIDs.length - 1 ? prevIndex + 1 : 0));
 	};
 
-	// Funksjon for forrige vits
+	// Function for moving to the previous joke
 	const previousJoke = () => {
 		setCurrentIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : slideshowIDs.length - 1));
 	};
 
 	const { data: joke } = useJokeById(currentJokeId);
+
+	// Function for directly navigating to a specific joke by its ID
 	const handleJoke = (id: number) => {
 		setCurrentIndex(slideshowIDs.indexOf(id));
 	};
