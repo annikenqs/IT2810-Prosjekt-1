@@ -1,0 +1,38 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FavoritePage > matches snapshot for FavoritePage with favorites 1`] = `
+<div>
+  <section
+    class="favoriteWindow"
+  >
+    <h3>
+      Favorites
+    </h3>
+    <ul>
+      <li>
+        Joke 1
+      </li>
+      <li>
+        Joke 2
+      </li>
+    </ul>
+  </section>
+</div>
+`;
+
+exports[`FavoritePage > matches snapshot for FavoritePage with no favorites 1`] = `
+<div>
+  <section
+    class="favoriteWindow"
+  >
+    <h3>
+      Favorites
+    </h3>
+    <p>
+      You don't have any favorite jokes. 
+      <br />
+      Use the star button to mark your favorites.
+    </p>
+  </section>
+</div>
+`;
