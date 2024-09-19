@@ -34,8 +34,11 @@ exports[`JokeCard > renders JokeCard correctly and matches snapshot for twopart 
       7
     </h3>
     <p>
+      Why did the web developer walk out of a resturant in disgust?
+    </p>
+    <p>
       - 
-      Why did the web developer walk out of a resturant in disgust? - The seating was laid out in tables.
+      The seating was laid out in tables.
     </p>
     <button
       class="favorite-button"
