@@ -1,0 +1,116 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`JokeCard > handles favoriting and unfavoriting correctly with snapshots > after favorite 1`] = `
+<div>
+  <section
+    class="card"
+    role="figure"
+  >
+    <h3>
+      Joke #
+      1
+    </h3>
+    <p>
+      - 
+      I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+    </p>
+    <button
+      class="favorite-button"
+    >
+      ★
+    </button>
+  </section>
+</div>
+`;
+
+exports[`JokeCard > handles favoriting and unfavoriting correctly with snapshots > before favorite 1`] = `
+<div>
+  <section
+    class="card"
+    role="figure"
+  >
+    <h3>
+      Joke #
+      1
+    </h3>
+    <p>
+      - 
+      I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+    </p>
+    <button
+      class="favorite-button"
+    >
+      ☆
+    </button>
+  </section>
+</div>
+`;
+
+exports[`JokeCard > renders JokeCard correctly and matches snapshot 1`] = `
+<div>
+  <section
+    class="card"
+    role="figure"
+  >
+    <h3>
+      Joke #
+      1
+    </h3>
+    <p>
+      - 
+      I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+    </p>
+    <button
+      class="favorite-button"
+    >
+      ☆
+    </button>
+  </section>
+</div>
+`;
+
+exports[`JokeCard > renders JokeCard correctly and matches snapshot for single joke 1`] = `
+<div>
+  <section
+    class="card"
+    role="figure"
+  >
+    <h3>
+      Joke #
+      1
+    </h3>
+    <p>
+      - 
+      I've got a really good UDP joke to tell you but I don’t know if you'll get it.
+    </p>
+    <button
+      class="favorite-button"
+    >
+      ☆
+    </button>
+  </section>
+</div>
+`;
+
+exports[`JokeCard > renders JokeCard correctly and matches snapshot for twopart joke 1`] = `
+<div>
+  <section
+    class="card"
+    role="figure"
+  >
+    <h3>
+      Joke #
+      7
+    </h3>
+    <p>
+      - 
+      Why did the web developer walk out of a resturant in disgust? - The seating was laid out in tables.
+    </p>
+    <button
+      class="favorite-button"
+    >
+      ☆
+    </button>
+  </section>
+</div>
+`;
