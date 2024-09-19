@@ -7,7 +7,6 @@
 	color: rgba(255, 255, 255, 0.87);
 	background: linear-gradient(135deg, #c9e2dd 0%, #8a95ba 100%);
 
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -22,7 +21,7 @@ body {
 	min-height: 100vh;
 	margin: 0;
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	
+
 	color: #333;
 }
 

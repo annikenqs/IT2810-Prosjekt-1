@@ -51,19 +51,20 @@ function JokeCard({ jokeResponse: j }: JokeCardProps) {
 	return (
 		<section className="card" role="figure">
 			<h3>Joke #{inUseIDs.indexOf(j.id) + 1}</h3>
-			{isTwopart ?
+			{isTwopart ? (
 				<>
 					<p>{j.setup}</p>
 					<p>- {j.delivery}</p>
-				</> :
+				</>
+			) : (
 				<p>- {joke}</p>
-			}
+			)}
 			{/* Star: to favorite a joke */}
 			<button onClick={handleFavoriteClick} className="favorite-button">
 				{isFavorite ? "★" : "☆"}
 			</button>
 		</section>
-	  );
+	);
 }
 
 export default JokeCard;
