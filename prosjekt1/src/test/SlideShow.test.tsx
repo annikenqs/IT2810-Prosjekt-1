@@ -25,11 +25,11 @@ describe("SlideShow", () => {
 	};
 
 	beforeEach(() => {
-		// Mock useJokeById for å returnere data
-		(useJokeById as any).mockReturnValue({
-			data: mockJokeResponse,
-		});
-	});
+        // Specify type for the mock return value
+        (useJokeById as jest.Mock).mockReturnValue({
+          data: mockJokeResponse,
+        });
+      });
 
 	afterEach(() => {
 		cleanup();
@@ -73,7 +73,7 @@ describe("SlideShow", () => {
 
 	it("displays loading message when joke is loading", () => {
 		// Mock loading state
-		(useJokeById as any).mockReturnValue({
+		(useJokeById as jest.Mock).mockReturnValue({
 			data: null,
 		});
 
@@ -84,7 +84,7 @@ describe("SlideShow", () => {
 
 	it("displays error message when there's an error", () => {
 		// Mock error state
-		(useJokeById as any).mockReturnValue({
+		(useJokeById as jest.Mock).mockReturnValue({
 			data: { ...mockJokeResponse, error: { message: "Failed to load joke" } },
 		});
 
@@ -97,7 +97,7 @@ describe("SlideShow", () => {
 		render(<SlideShow />);
 
 		// Mock `useJokeById` to handle current joke as the last joke in slideshowIDs
-		(useJokeById as any).mockReturnValue({
+		(useJokeById as jest.Mock).mockReturnValue({
 			data: { ...mockJokeResponse, id: slideshowIDs[slideshowIDs.length - 1] },
 		});
 
@@ -112,7 +112,7 @@ describe("SlideShow", () => {
 		render(<SlideShow />);
 
 		// Mock `useJokeById` to handle current joke as the first joke in slideshowIDs
-		(useJokeById as any).mockReturnValue({
+		(useJokeById as jest.Mock).mockReturnValue({
 			data: { ...mockJokeResponse, id: slideshowIDs[0] },
 		});
 
