@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 /coverage
+.coverage-56.json
